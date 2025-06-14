@@ -272,7 +272,7 @@ const generatePayslip = async (req, res) => {
 };
 
 // Generate payroll CSV for bank transfer
-const generatePayrollCSV = async (req, res) => {
+const handleGeneratePayrollCSV = async (req, res) => {
   try {
     const { month, year } = req.query;
 
@@ -358,6 +358,6 @@ module.exports = {
   updatePayroll,
   approvePayroll,
   generatePayslip,
-  generatePayrollCSV,
+  handleGeneratePayrollCSV,
   getMyPayrolls
 };
