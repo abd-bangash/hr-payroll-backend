@@ -8,7 +8,7 @@ const {
   updatePayroll,
   approvePayroll,
   generatePayslip,
-  generatePayrollCSV,
+  handleGeneratePayrollCSV,
   getMyPayrolls
 } = require('../controllers/payrollController');
 
@@ -23,7 +23,7 @@ router.get('/my-payrolls', getMyPayrolls);
 // Routes with permission checks
 router.post('/', authorizePermission('create_payroll'), validate(payrollValidation.create), createPayroll);
 router.get('/', authorizePermission('read_payroll'), getPayrolls);
-router.get('/csv', authorizePermission('read_payroll'), generatePayrollCSV);
+router.get('/csv', authorizePermission('read_payroll'), handleGeneratePayrollCSV);
 router.get('/:id', authorizePermission('read_payroll'), getPayrollById);
 router.put('/:id', authorizePermission('update_payroll'), updatePayroll);
 router.post('/:id/approve', authorizePermission('approve_payroll'), approvePayroll);
