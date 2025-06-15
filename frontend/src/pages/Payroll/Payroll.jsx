@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import PayrollList from './PayrollList'
-import PayrollForm from './PayrollForm'
+import PayrollForm from './PayrollForm.jsx'
 import PayrollDetails from './PayrollDetails'
 import MyPayrolls from './MyPayrolls'
 
