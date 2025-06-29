@@ -30,7 +30,7 @@ const userValidation = {
 const employeeValidation = {
   create: Joi.object({
     userId: Joi.string().required(),
-    // employeeId: Joi.string().optional(), // Add this line to allow employeeId
+    employeeId: Joi.string().optional(), // Add this line to allow employeeId
     personalInfo: Joi.object({
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),

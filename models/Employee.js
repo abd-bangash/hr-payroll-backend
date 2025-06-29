@@ -4,7 +4,6 @@ const employeeSchema = new mongoose.Schema(
   {
     employeeId: {
       type: String,
-      required: true,
       unique: true,
     },
     userId: {
@@ -29,10 +28,20 @@ const employeeSchema = new mongoose.Schema(
     employmentDetails: {
       type: {
         type: String,
-        enum: ["Permanent", "Contractual", "Freelancer"],
+        enum: [
+          "Permanent",
+          "Full time Contractual",
+          "Part time Contractual",
+          "Daily Wages",
+          "Visiting Faculty",
+        ],
         required: true,
       },
-      department: { type: String, required: true },
+      department: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Department",
+        required: true,
+      },
       position: { type: String, required: true },
       joiningDate: { type: Date, required: true },
       reportingManager: {
@@ -42,7 +51,7 @@ const employeeSchema = new mongoose.Schema(
     },
     salaryDetails: {
       baseSalary: { type: Number, required: true },
-      currency: { type: String, default: "USD" },
+      currency: { type: String, default: "PKR" },
       payFrequency: {
         type: String,
         enum: ["Monthly", "Bi-weekly", "Weekly"],
