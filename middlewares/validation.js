@@ -29,8 +29,10 @@ const userValidation = {
 // Employee validation schemas
 const employeeValidation = {
   create: Joi.object({
-    userId: Joi.string().required(),
-    employeeId: Joi.string().optional(), // Add this line to allow employeeId
+    userId: Joi.string().optional(), // <-- Make optional
+    userEmail: Joi.string().email().optional(), // <-- Allow email as alternative
+    username: Joi.string().optional(), // <-- Allow username as alternative
+    employeeId: Joi.string().optional(),
     personalInfo: Joi.object({
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
@@ -47,7 +49,13 @@ const employeeValidation = {
     }).required(),
     employmentDetails: Joi.object({
       type: Joi.string()
-        .valid("Permanent", "Contractual", "Freelancer")
+        .valid(
+          "Permanent",
+          "Full time Contractual",
+          "Part time Contractual",
+          "Daily Wages",
+          "Visiting Faculty"
+        )
         .required(),
       department: Joi.string().required(),
       position: Joi.string().required(),
@@ -56,7 +64,7 @@ const employeeValidation = {
     }).required(),
     salaryDetails: Joi.object({
       baseSalary: Joi.number().positive().required(),
-      currency: Joi.string().default("USD"),
+      currency: Joi.string().default("PKR"),
       payFrequency: Joi.string()
         .valid("Monthly", "Bi-weekly", "Weekly")
         .default("Monthly"),

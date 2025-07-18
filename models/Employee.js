@@ -6,11 +6,11 @@ const employeeSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+    // userId: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "User",
+    //   required: false,
+    // },
     personalInfo: {
       firstName: { type: String, required: true },
       lastName: { type: String, required: true },
@@ -56,6 +56,13 @@ const employeeSchema = new mongoose.Schema(
         type: String,
         enum: ["Monthly", "Bi-weekly", "Weekly"],
         default: "Monthly",
+      },
+      overtime: {
+        rate: {
+          type: Number,
+          default: 0,
+        },
+        hours: { type: Number },
       },
       bankDetails: {
         accountNumber: String,

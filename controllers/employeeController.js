@@ -1,11 +1,22 @@
 const Employee = require("../models/Employee");
 const User = require("../models/User");
 const { logAudit } = require("../services/auditService");
+const mongoose = require("mongoose");
 
 // Create employee
 const createEmployee = async (req, res) => {
+  console.log("===============>");
   try {
     const employeeData = req.body;
+    if (
+      req.body.employmentDetails &&
+      req.body.employmentDetails.department &&
+      typeof req.body.employmentDetails.department === "string"
+    ) {
+      req.body.employmentDetails.department = new mongoose.Types.ObjectId(
+        req.body.employmentDetails.department
+      );
+    }
 
     // Check if employee already exists for this user
     const existingEmployee = await Employee.findOne({
